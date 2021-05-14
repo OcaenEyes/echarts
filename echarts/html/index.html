@@ -6,13 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ECHARTS示例</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/echarts@4.6.0/dist/echarts.js"></script>
-    <script src="../js/westeros.js"></script>
+    <script src="../js/echarts5.1.1.js"></script>
+    <script src="../js/theme/westeros.js"></script>
 </head>
 
 <body>
-    <div id="bar-01" style="width: 400px;height: 300px;">
-    </div>
+    <div id="bar-01" style="width: 400px;height: 300px;"></div>
     <div id="pie-01" style="width: 400px;height: 300px;"></div>
     <div id="line-01" style="width: 400px;height: 300px;"></div>
     <div id="dataset-chart" style="width: 400px;height: 300px;"></div>
@@ -208,10 +207,10 @@
 
         // 二维表结构的数据，使用series.encode属性将对应数据映射到坐标轴
         var datasetoption3 = {
-            title:{
-                text:"二维表dataset",
+            title: {
+                text: "二维表dataset",
             },
-            tooltip:{},
+            tooltip: {},
             dataset: {
                 source: [
                     ['score', 'amount', 'product'],
@@ -241,7 +240,7 @@
                         x: 'amount',
                         //将product 映射到Y轴
                         y: 'product',
-                        
+
                     }
                 }
             ],
