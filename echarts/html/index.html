@@ -21,239 +21,240 @@
     <div id="dataset-chart04" style="width: 400px;height: 300px;"></div>
     <div id="dataset-chart05" style="width: 400px;height: 300px;"></div>
 
-    <script type="text/javascript">
-        var barCahrt = echarts.init(document.getElementById('bar-01'), 'westeros');
-        var pieChart = echarts.init(document.getElementById("pie-01"));
-        var lineChart = echarts.init(document.getElementById("line-01"));
-        var datasetchart = echarts.init(document.getElementById("dataset-chart"));
-        var datasetchart01 = echarts.init(document.getElementById("dataset-chart01"), 'westeros');
-        var datasetchart02 = echarts.init(document.getElementById("dataset-chart02"), 'westeros');
-        var datasetchart03 = echarts.init(document.getElementById("dataset-chart03"), 'westeros');
-        var datasetchart04 = echarts.init(document.getElementById("dataset-chart04"), 'westeros');
-        var datasetchart05 = echarts.init(document.getElementById("dataset-chart05"), 'westeros');
 
-        // 柱形图数据
-        var option1 = {
-            title: {
-                text: "第一个柱形图"
-            },
-            tooltip: {},
-            legend: {
-                data: ["销量"],
-            },
-            xAxis: {
-                data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"],
-            },
-            yAxis: {
-            },
-
-            series: {
-                name: "销量",
-                type: "bar",
-                data: [
-                    5, 20, 36, 10, 10, 20
-                ],
-            },
-        };
-
-        //饼图数据
-        var option2 = {
-            title: {
-                text: "第一个饼图"
-            },
-            tooltip: {},
-            legend: {
-                data: ["A", "B", "C"],
-            },
-            series: {
-                type: "pie",
-                data: [
-                    { name: "A", value: 1231 },
-                    { name: "B", value: 2323 },
-                    { name: "C", value: 1919 },
-                ],
-            },
-        };
-
-        //折线图数据
-        var option3 = {
-            title: {
-                text: "第一个折线图",
-            },
-            tooltip: {},
-            legend: {
-                data: ["数量"],
-            },
-            toolbox: {
-                feature: {
-                    dataView: {},
-                    saveAsImage: {
-                        pixelRadio: 2,
-                    },
-                    restore: {},
-                },
-            },
-            xAxis: {
-            },
-            yAxis: {
-            },
-            series: [{
-                type: "line",
-                smooth: true,
-                name: ["数量"],
-                data: [
-                    [12, 5],
-                    [24, 20],
-                    [36, 36],
-                    [48, 10],
-                    [60, 10],
-                    [72, 20]
-                ],
-            }],
-        };
-
-        //  dataset方式的数据渲染
-        var datasetoption = {
-            title: {
-                text: "dataset数据图",
-            },
-            legend: {},
-            tooltip: {},
-            dataset: {
-                source: [
-                    ['product', '2017', '2018', '2019'],
-                    ['wine', 43.3, 85.8, 93.7],
-                    ['milk tea', 83.1, 73.4, 55.1],
-                    ['coco', 86.4, 65.4, 82.5],
-                    ['brownie', 72.4, 53.9, 39.1],
-                ],
-            },
-            //  声明一个x轴，类目轴(category) ,默认情况下为dataset第一列
-            xAxis: { type: 'category' },
-            // 声明一个y轴，数值轴
-            yAxis: {},
-            // 声明多个bar系列 ，默认情况下，每个系列会自动对应到dataset的每一列
-            series: [
-                { type: 'bar' },
-                { type: 'bar' },
-                { type: 'bar' },
-            ],
-        };
-
-        //  dataset以对象数组的格式
-        var datasetoption1 = {
-            // 图列
-            legend: {},
-            tooltip: {},
-            dataset: {
-                // 指定维度名的顺序，从而利用默认的维度到坐标轴的赢谁
-                dimensions: ['product', '2018', '2019', '2020'],
-                source: [
-                    { 'product': 'matcha', '2018': 43.3, '2019': 85.8, '2020': 93.7, },
-                    { 'product': 'coco', '2018': 43.3, '2019': 85.8, '2020': 93.7, },
-                    { 'product': 'milk tea', '2018': 43.3, '2019': 85.8, '2020': 93.7, },
-                    { 'product': 'conffe', '2018': 43.3, '2019': 85.8, '2020': 93.7, },
-                ],
-            },
-            xAxis: { type: 'category' },
-            yAxis: {},
-            series: [
-                { type: 'bar' },
-                { type: 'bar' },
-                { type: 'bar' },
-            ],
-        };
-
-        // 数据到图形的映射
-        // 使用series.seriesLayoutBy 属性来配置dataset是列还是行
-        var datasetoption2 = {
-            legend: {},
-            tooltip: {},
-            dataset: {
-                source: [
-                    ['product', '2017', '2018', '2019'],
-                    ['wine', 43.3, 85.8, 93.7],
-                    ['milk tea', 83.1, 73.4, 55.1],
-                    ['coco', 86.4, 65.4, 82.5],
-                    ['brownie', 72.4, 53.9, 39.1],
-                ],
-            },
-            xAxis: [
-                { type: 'category', gridIndex: 0 },
-                { type: 'category', gridIndex: 1 },
-            ],
-            yAxis: [
-                { gridIndex: 0 },
-                { gridIndex: 1 }
-            ],
-            grid: [
-                { bottom: '55%' },
-                { top: "55%" }
-            ],
-
-            series: [
-                //显示在第一个直角坐标系，每个系列对应dataset的每一行
-                { type: 'bar', seriesLayoutBy: 'row' },
-                { type: 'bar', seriesLayoutBy: 'row' },
-                { type: 'bar', seriesLayoutBy: 'row' },
-                { type: 'bar', seriesLayoutBy: 'row' },
-
-                // 显示在第二个直角坐标系，每个系列对应dataset的每一行
-                { type: 'bar', xAxisIndex: 1, yAxisIndex: 1 },
-                { type: 'bar', xAxisIndex: 1, yAxisIndex: 1 },
-                { type: 'bar', xAxisIndex: 1, yAxisIndex: 1 },
-            ],
-        };
-
-        // 二维表结构的数据，使用series.encode属性将对应数据映射到坐标轴
-        var datasetoption3 = {
-            title: {
-                text: "二维表dataset",
-            },
-            tooltip: {},
-            dataset: {
-                source: [
-                    ['score', 'amount', 'product'],
-                    [89.3, 5821, 'matcha'],
-                    [57.1, 7825, 'jea'],
-                    [74.4, 4103, 'Cocoa'],
-                    [50.1, 1275, 'Brownie'],
-                    [89.7, 2014, 'Cocoa'],
-                    [68.1, 7914, 'Tea'],
-                    [19.6, 9185, 'Juice'],
-                    [10.6, 10185, 'Lemon'],
-                    [32.7, 2011, 'Walnut']
-                ],
-            },
-            grid: {
-                containLabel: true,
-            },
-            xAxis: {},
-            yAxis: {
-                type: 'category',
-            },
-            series: [
-                {
-                    type: 'bar',
-                    encode: {
-                        //将amount 映射到X轴
-                        x: 'amount',
-                        //将product 映射到Y轴
-                        y: 'product',
-
-                    }
-                }
-            ],
-        };
-
-        barCahrt.setOption(option1);
-        pieChart.setOption(option2);
-        lineChart.setOption(option3);
-        datasetchart.setOption(datasetoption);
-        datasetchart01.setOption(datasetoption1);
-        datasetchart02.setOption(datasetoption2);
-        datasetchart03.setOption(datasetoption3);
-    </script>
 </body>
+<script type="text/javascript">
+    var barCahrt = echarts.init(document.getElementById('bar-01'), 'westeros');
+    var pieChart = echarts.init(document.getElementById("pie-01"));
+    var lineChart = echarts.init(document.getElementById("line-01"));
+    var datasetchart = echarts.init(document.getElementById("dataset-chart"));
+    var datasetchart01 = echarts.init(document.getElementById("dataset-chart01"), 'westeros');
+    var datasetchart02 = echarts.init(document.getElementById("dataset-chart02"), 'westeros');
+    var datasetchart03 = echarts.init(document.getElementById("dataset-chart03"), 'westeros');
+    var datasetchart04 = echarts.init(document.getElementById("dataset-chart04"), 'westeros');
+    var datasetchart05 = echarts.init(document.getElementById("dataset-chart05"), 'westeros');
+
+    // 柱形图数据
+    var option1 = {
+        title: {
+            text: "第一个柱形图"
+        },
+        tooltip: {},
+        legend: {
+            data: ["销量"],
+        },
+        xAxis: {
+            data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"],
+        },
+        yAxis: {
+        },
+
+        series: {
+            name: "销量",
+            type: "bar",
+            data: [
+                5, 20, 36, 10, 10, 20
+            ],
+        },
+    };
+
+    //饼图数据
+    var option2 = {
+        title: {
+            text: "第一个饼图"
+        },
+        tooltip: {},
+        legend: {
+            data: ["A", "B", "C"],
+        },
+        series: {
+            type: "pie",
+            data: [
+                { name: "A", value: 1231 },
+                { name: "B", value: 2323 },
+                { name: "C", value: 1919 },
+            ],
+        },
+    };
+
+    //折线图数据
+    var option3 = {
+        title: {
+            text: "第一个折线图",
+        },
+        tooltip: {},
+        legend: {
+            data: ["数量"],
+        },
+        toolbox: {
+            feature: {
+                dataView: {},
+                saveAsImage: {
+                    pixelRadio: 2,
+                },
+                restore: {},
+            },
+        },
+        xAxis: {
+        },
+        yAxis: {
+        },
+        series: [{
+            type: "line",
+            smooth: true,
+            name: ["数量"],
+            data: [
+                [12, 5],
+                [24, 20],
+                [36, 36],
+                [48, 10],
+                [60, 10],
+                [72, 20]
+            ],
+        }],
+    };
+
+    //  dataset方式的数据渲染
+    var datasetoption = {
+        title: {
+            text: "dataset数据图",
+        },
+        legend: {},
+        tooltip: {},
+        dataset: {
+            source: [
+                ['product', '2017', '2018', '2019'],
+                ['wine', 43.3, 85.8, 93.7],
+                ['milk tea', 83.1, 73.4, 55.1],
+                ['coco', 86.4, 65.4, 82.5],
+                ['brownie', 72.4, 53.9, 39.1],
+            ],
+        },
+        //  声明一个x轴，类目轴(category) ,默认情况下为dataset第一列
+        xAxis: { type: 'category' },
+        // 声明一个y轴，数值轴
+        yAxis: {},
+        // 声明多个bar系列 ，默认情况下，每个系列会自动对应到dataset的每一列
+        series: [
+            { type: 'bar' },
+            { type: 'bar' },
+            { type: 'bar' },
+        ],
+    };
+
+    //  dataset以对象数组的格式
+    var datasetoption1 = {
+        // 图列
+        legend: {},
+        tooltip: {},
+        dataset: {
+            // 指定维度名的顺序，从而利用默认的维度到坐标轴的赢谁
+            dimensions: ['product', '2018', '2019', '2020'],
+            source: [
+                { 'product': 'matcha', '2018': 43.3, '2019': 85.8, '2020': 93.7, },
+                { 'product': 'coco', '2018': 43.3, '2019': 85.8, '2020': 93.7, },
+                { 'product': 'milk tea', '2018': 43.3, '2019': 85.8, '2020': 93.7, },
+                { 'product': 'conffe', '2018': 43.3, '2019': 85.8, '2020': 93.7, },
+            ],
+        },
+        xAxis: { type: 'category' },
+        yAxis: {},
+        series: [
+            { type: 'bar' },
+            { type: 'bar' },
+            { type: 'bar' },
+        ],
+    };
+
+    // 数据到图形的映射
+    // 使用series.seriesLayoutBy 属性来配置dataset是列还是行
+    var datasetoption2 = {
+        legend: {},
+        tooltip: {},
+        dataset: {
+            source: [
+                ['product', '2017', '2018', '2019'],
+                ['wine', 43.3, 85.8, 93.7],
+                ['milk tea', 83.1, 73.4, 55.1],
+                ['coco', 86.4, 65.4, 82.5],
+                ['brownie', 72.4, 53.9, 39.1],
+            ],
+        },
+        xAxis: [
+            { type: 'category', gridIndex: 0 },
+            { type: 'category', gridIndex: 1 },
+        ],
+        yAxis: [
+            { gridIndex: 0 },
+            { gridIndex: 1 }
+        ],
+        grid: [
+            { bottom: '55%' },
+            { top: "55%" }
+        ],
+
+        series: [
+            //显示在第一个直角坐标系，每个系列对应dataset的每一行
+            { type: 'bar', seriesLayoutBy: 'row' },
+            { type: 'bar', seriesLayoutBy: 'row' },
+            { type: 'bar', seriesLayoutBy: 'row' },
+            { type: 'bar', seriesLayoutBy: 'row' },
+
+            // 显示在第二个直角坐标系，每个系列对应dataset的每一行
+            { type: 'bar', xAxisIndex: 1, yAxisIndex: 1 },
+            { type: 'bar', xAxisIndex: 1, yAxisIndex: 1 },
+            { type: 'bar', xAxisIndex: 1, yAxisIndex: 1 },
+        ],
+    };
+
+    // 二维表结构的数据，使用series.encode属性将对应数据映射到坐标轴
+    var datasetoption3 = {
+        title: {
+            text: "二维表dataset",
+        },
+        tooltip: {},
+        dataset: {
+            source: [
+                ['score', 'amount', 'product'],
+                [89.3, 5821, 'matcha'],
+                [57.1, 7825, 'jea'],
+                [74.4, 4103, 'Cocoa'],
+                [50.1, 1275, 'Brownie'],
+                [89.7, 2014, 'Cocoa'],
+                [68.1, 7914, 'Tea'],
+                [19.6, 9185, 'Juice'],
+                [10.6, 10185, 'Lemon'],
+                [32.7, 2011, 'Walnut']
+            ],
+        },
+        grid: {
+            containLabel: true,
+        },
+        xAxis: {},
+        yAxis: {
+            type: 'category',
+        },
+        series: [
+            {
+                type: 'bar',
+                encode: {
+                    //将amount 映射到X轴
+                    x: 'amount',
+                    //将product 映射到Y轴
+                    y: 'product',
+
+                }
+            }
+        ],
+    };
+
+    barCahrt.setOption(option1);
+    pieChart.setOption(option2);
+    lineChart.setOption(option3);
+    datasetchart.setOption(datasetoption);
+    datasetchart01.setOption(datasetoption1);
+    datasetchart02.setOption(datasetoption2);
+    datasetchart03.setOption(datasetoption3);
+</script>
 
 </html>
