@@ -1,0 +1,10 @@
+DailyReadingActivity
+QDNewLeaderReadDetailViewController
+QDNewLeaderReadDetailViewController
+DailyReadingActivity
+QDBookShelfViewController
+QDBookShelfPagerFragment
+QDBookShelfViewController
+QDBookShelfPagerFragment
+QDBookMainShelfViewController
+QDBookMainShelfViewController

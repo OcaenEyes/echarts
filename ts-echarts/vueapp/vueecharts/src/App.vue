@@ -2,7 +2,7 @@
  * @Author: OCEAN.GZY
  * @Date: 2022-10-28 15:31:23
  * @LastEditors: OCEAN.GZY
- * @LastEditTime: 2022-10-28 16:42:01
+ * @LastEditTime: 2022-10-31 10:43:34
  * @FilePath: /echarts/ts-echarts/vueapp/vueecharts/src/App.vue
  * @Description: 注释信息
 -->
@@ -23,7 +23,10 @@ import EchartdemoVue from './components/Echartdemo.vue';
     </a>
   </div> -->
   <!-- <HelloWorld msg="Vite + Vue" /> -->
+<div class="main">
   <EchartdemoVue></EchartdemoVue>
+</div>
+
 </template>
 
 <style scoped>
@@ -39,5 +42,10 @@ import EchartdemoVue from './components/Echartdemo.vue';
 
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
+}
+.main{
+  width: 100%;
+  height: 100vh;  
+  /* background-color:blue; */
 }
 </style>
