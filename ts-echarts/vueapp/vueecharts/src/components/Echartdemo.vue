@@ -2,7 +2,7 @@
  * @Author: OCEAN.GZY
  * @Date: 2022-10-28 16:00:05
  * @LastEditors: OCEAN.GZY
- * @LastEditTime: 2022-10-31 16:48:47
+ * @LastEditTime: 2022-11-08 17:41:47
  * @FilePath: /echarts/ts-echarts/vueapp/vueecharts/src/components/Echartdemo.vue
  * @Description: 注释信息
 -->
@@ -10,14 +10,22 @@
 import * as echarts from 'echarts';
 import { onMounted } from 'vue';
 import data from "../assets/book-1.json"
-import data201604 from "../assets/author.json"
+import xinshuqi from "../assets/author.json"
+import lianzaiqi from "../assets/author.json"
+import diskData from "../assets/newbook.json"
+import diskData1 from "../assets/newbook1.json"
 import $ from 'jquery'
 import axios from 'axios'
 onMounted(() => {
-    init_demo01()
-    init_demo02()
-    init_demo03()
-    init_demo04()
+    // init_demo01()
+    // init_demo02()
+    // init_demo03()
+    // init_demo04()
+    init_demo05()
+    init_demo06()
+    init_demo07()
+    init_demo08()
+    init_demo09()
 })
 var init_demo01 = () => {
     var ROOT_PATH = 'https://echarts.apache.org/examples';
@@ -237,7 +245,7 @@ var init_demo02 = () => {
         children: [] as TreeNode[]
     } as TreeNode;
 
-    convert(data201604, data, '');
+    convert(xinshuqi, data, '');
 
     myChart.setOption(
         (option = {
@@ -583,7 +591,7 @@ var init_demo04 = () => {
                         '书籍7',
                         '\n书籍7',
                         '书籍8',
-                  
+
                     ],
                     splitLine: { show: false }
                 }
@@ -798,10 +806,534 @@ var init_demo04 = () => {
 
 }
 
+var init_demo05 = () => {
+    var ROOT_PATH = 'https://echarts.apache.org/examples';
+    type EChartsOption = echarts.EChartsOption;
+
+    var chartDom = document.getElementById('demo05')!;
+    var myChart = echarts.init(chartDom);
+    var option: EChartsOption;
+
+    myChart.showLoading();
+
+    // $.get(ROOT_PATH + '/data/asset/data/disk.tree.json', function (diskData) {
+    myChart.hideLoading();
+
+    function getLevelOption() {
+        return [
+            {
+                itemStyle: {
+                    borderColor: '#777',
+                    borderWidth: 0,
+                    gapWidth: 1
+                },
+                upperLabel: {
+                    show: false
+                }
+            },
+            {
+                itemStyle: {
+                    borderColor: '#555',
+                    borderWidth: 5,
+                    gapWidth: 1
+                },
+                emphasis: {
+                    itemStyle: {
+                        borderColor: '#ddd'
+                    }
+                }
+            },
+            {
+                colorSaturation: [0.35, 0.5],
+                itemStyle: {
+                    borderWidth: 5,
+                    gapWidth: 1,
+                    borderColorSaturation: 0.6
+                }
+            }
+        ];
+    }
+
+    myChart.setOption(
+        (option = {
+            title: {
+                text: '编辑-书籍ROI看板',
+                left: 'center'
+            },
+
+            tooltip: {
+                formatter: function (info: any) {
+                    var value = info.value;
+                    var treePathInfo = info.treePathInfo;
+                    var treePath = [];
+
+                    for (var i = 1; i < treePathInfo.length; i++) {
+                        treePath.push(treePathInfo[i].name);
+                    }
+
+                    return [
+                        '<div class="tooltip-title">' +
+                        echarts.format.encodeHTML(treePath.join('/')) +
+                        '</div>',
+                        '编辑-书籍ROI: ' + echarts.format.addCommas(value)
+                    ].join('');
+                }
+            },
+
+            series: [
+                {
+                    name: '编辑-书籍ROI看板',
+                    type: 'treemap',
+                    visibleMin: 300,
+                    label: {
+                        show: true,
+                        formatter: '{b}'
+                    },
+                    upperLabel: {
+                        show: true,
+                        height: 30
+                    },
+                    itemStyle: {
+                        borderColor: '#fff'
+                    },
+                    levels: getLevelOption(),
+                    data: diskData
+                }
+            ]
+        })
+    );
+    // });
+
+    option && myChart.setOption(option);
+}
+
+var init_demo06 = () => {
+    type EChartsOption = echarts.EChartsOption;
+
+    var chartDom = document.getElementById('demo06')!;
+    var myChart = echarts.init(chartDom);
+    var option: EChartsOption;
+
+    option = {
+        title: {
+            text: '编辑新书期ROI看板',
+            left: 'left'
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross',
+                crossStyle: {
+                    color: '#999'
+                }
+            }
+        },
+        toolbox: {
+            feature: {
+                dataView: { show: true, readOnly: false },
+                magicType: { show: true, type: ['line', 'bar'] },
+                restore: { show: true },
+                saveAsImage: { show: true }
+            }
+        },
+        legend: {
+            data: ['曝光PV', '追读PV', 'ROI(追读PV/曝光PV)']
+        },
+        xAxis: [
+            {
+                type: 'category',
+                data: ['编辑1', '编辑2', '编辑3', '编辑4', '编辑5', '编辑6', '编辑7', '编辑8', '编辑9', '编辑10', '编辑11', '编辑12', '编辑13'],
+                axisPointer: {
+                    type: 'shadow'
+                }
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                name: 'PV量',
+                min: 0,
+                max: 250,
+                interval: 50,
+                axisLabel: {
+                    formatter: '{value} 千'
+                }
+            },
+            {
+                type: 'value',
+                name: 'ROI(追读PV/曝光PV)  ',
+                min: 0,
+                max: 25,
+                interval: 5,
+                axisLabel: {
+                    formatter: '{value}'
+                }
+            }
+        ],
+        series: [
+            {
+                name: '曝光PV',
+                type: 'bar',
+                tooltip: {
+                    valueFormatter: function (value) {
+                        return value as string;
+                    }
+                },
+                data: [
+                    3.0, 8.9, 17.0, 42.2, 55.6, 86.7, 135.6, 162.2, 62.6, 40.0, 9.4, 8.3
+                ]
+            },
+            {
+                name: '追读PV',
+                type: 'bar',
+                tooltip: {
+                    valueFormatter: function (value) {
+                        return value as string;
+                    }
+                },
+                data: [
+                    2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 110.6, 120.2, 48.7, 18.8, 6.0, 2.3
+                ]
+            },
+            {
+                name: 'ROI(追读PV/曝光PV)',
+                type: 'line',
+                yAxisIndex: 1,
+                tooltip: {
+                    valueFormatter: function (value) {
+                        return value as string;
+                    }
+                },
+                data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
+            }
+        ]
+    };
+
+    option && myChart.setOption(option);
+
+}
+
+var init_demo07 = () => {
+    var ROOT_PATH = 'https://echarts.apache.org/examples';
+    type EChartsOption = echarts.EChartsOption;
+
+    var chartDom = document.getElementById('demo07')!;
+    var myChart = echarts.init(chartDom);
+    var option: EChartsOption;
+
+    myChart.showLoading();
+
+    // $.get(ROOT_PATH + '/data/asset/data/disk.tree.json', function (diskData) {
+    myChart.hideLoading();
+
+    function getLevelOption() {
+        return [
+            {
+                itemStyle: {
+                    borderColor: '#777',
+                    borderWidth: 0,
+                    gapWidth: 1
+                },
+                upperLabel: {
+                    show: false
+                }
+            },
+            {
+                itemStyle: {
+                    borderColor: '#555',
+                    borderWidth: 5,
+                    gapWidth: 1
+                },
+                emphasis: {
+                    itemStyle: {
+                        borderColor: '#ddd'
+                    }
+                }
+            },
+            {
+                colorSaturation: [0.35, 0.5],
+                itemStyle: {
+                    borderWidth: 5,
+                    gapWidth: 1,
+                    borderColorSaturation: 0.6
+                }
+            }
+        ];
+    }
+
+    myChart.setOption(
+        (option = {
+            title: {
+                text: '编辑-书籍ROI看板',
+                left: 'center'
+            },
+
+            tooltip: {
+                formatter: function (info: any) {
+                    var value = info.value;
+                    var treePathInfo = info.treePathInfo;
+                    var treePath = [];
+
+                    for (var i = 1; i < treePathInfo.length; i++) {
+                        treePath.push(treePathInfo[i].name);
+                    }
+
+                    return [
+                        '<div class="tooltip-title">' +
+                        echarts.format.encodeHTML(treePath.join('/')) +
+                        '</div>',
+                        '编辑-书籍ROI: ' + echarts.format.addCommas(value)
+                    ].join('');
+                }
+            },
+
+            series: [
+                {
+                    name: '编辑-书籍ROI看板',
+                    type: 'treemap',
+                    visibleMin: 300,
+                    label: {
+                        show: true,
+                        formatter: '{b}'
+                    },
+                    upperLabel: {
+                        show: true,
+                        height: 30
+                    },
+                    itemStyle: {
+                        borderColor: '#fff'
+                    },
+                    levels: getLevelOption(),
+                    data: diskData1
+                }
+            ]
+        })
+    );
+    // });
+
+    option && myChart.setOption(option);
+}
+
+var init_demo08 = () => {
+    type EChartsOption = echarts.EChartsOption;
+
+    var chartDom = document.getElementById('demo08')!;
+    var myChart = echarts.init(chartDom);
+    var option: EChartsOption;
+
+    const colors = ['#5470C6', '#91CC75', '#EE6666'];
+
+    option = {
+        color: colors,
+        title: {
+            text: '编辑连载期ROI看板',
+            left: 'left'
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross'
+            }
+        },
+        grid: {
+            right: '20%'
+        },
+        toolbox: {
+            feature: {
+                dataView: { show: true, readOnly: false },
+                restore: { show: true },
+                saveAsImage: { show: true }
+            }
+        },
+        legend: {
+            data: ['Evaporation', 'Precipitation', 'Temperature']
+        },
+        xAxis: [
+            {
+                type: 'category',
+                axisTick: {
+                    alignWithLabel: true
+                },
+                // prettier-ignore
+                data: ['编辑1', '编辑2', '编辑3', '编辑4', '编辑5', '编辑6', '编辑7', '编辑8', '编辑9', '编辑10', '编辑11', '编辑12', '编辑13'],
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                name: '曝光PV',
+                position: 'left',
+                alignTicks: true,
+                axisLine: {
+                    show: true,
+                    lineStyle: {
+                        color: colors[0]
+                    }
+                },
+                axisLabel: {
+                    formatter: '{value} '
+                }
+            },
+            {
+                type: 'value',
+                name: '收入',
+                position: 'left',
+                alignTicks: true,
+                offset: 80,
+                axisLine: {
+                    show: true,
+                    lineStyle: {
+                        color: colors[1]
+                    }
+                },
+                axisLabel: {
+                    formatter: '{value} '
+                }
+            },
+            {
+                type: 'value',
+                name: 'ROI(收入/曝光PV)',
+                position: 'right',
+                alignTicks: true,
+                axisLine: {
+                    show: true,
+                    lineStyle: {
+                        color: colors[2]
+                    }
+                },
+                axisLabel: {
+                    formatter: '{value} '
+                }
+            }
+        ],
+        series: [
+            {
+                name: '曝光PV',
+                type: 'bar',
+                data: [
+                    2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3
+                ]
+            },
+            {
+                name: '收入',
+                type: 'bar',
+                yAxisIndex: 1,
+                data: [
+                    2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3
+                ]
+            },
+            {
+                name: 'ROI(收入/曝光PV)',
+                type: 'line',
+                yAxisIndex: 2,
+                data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
+            }
+        ]
+    };
+
+    option && myChart.setOption(option);
+
+}
+
+var init_demo09 = () => {
+    type EChartsOption = echarts.EChartsOption;
+    // const colors = ['#5470C6', '#91CC75', '#EE6666'];
+    var chartDom = document.getElementById('demo09')!;
+    var myChart = echarts.init(chartDom);
+    var option: EChartsOption;
+
+    option = {
+        title: {
+            text: '书籍转化漏斗'
+        },
+        // color: colors,
+        tooltip: {
+            trigger: 'item',
+            formatter: '{a} <br/>{b} : {c}%'
+        },
+        toolbox: {
+            feature: {
+                dataView: { readOnly: false },
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        legend: {
+            data: ['曝光', '点击', '阅读', '收藏', '付费']
+        },
+        series: [
+            {
+                name: 'UV量',
+                type: 'funnel',
+                left: '10%',
+                width: '80%',
+                label: {
+                    formatter: '{b}'
+                },
+                labelLine: {
+                    show: false
+                },
+                itemStyle: {
+                    opacity: 0.7
+                },
+                emphasis: {
+                    label: {
+                        position: 'inside',
+                        formatter: '{b}Expected: {c}%'
+                    }
+                },
+                data: [
+                    { value: 60, name: '阅读' },
+                    { value: 40, name: '收藏' },
+                    { value: 20, name: '付费' },
+                    { value: 80, name: '点击' },
+                    { value: 100, name: '曝光' }
+                ]
+            },
+            {
+                name: '转化率',
+                type: 'funnel',
+                left: '10%',
+                width: '80%',
+                maxSize: '80%',
+                label: {
+                    position: 'inside',
+                    formatter: '{c}%',
+                    color: '#fff'
+                },
+                itemStyle: {
+                    opacity: 0.5,
+                    borderColor: '#fff',
+                    borderWidth: 2
+                },
+                emphasis: {
+                    label: {
+                        position: 'inside',
+                        formatter: '{b}转化率: {c}%'
+                    }
+                },
+                data: [
+                    { value: 60, name: '阅读' },
+                    { value: 40, name: '收藏' },
+                    { value: 20, name: '付费' },
+                    { value: 80, name: '点击' },
+                    { value: 100, name: '曝光' }
+                ],
+                // Ensure outer shape will not be over inner shape when hover.
+                z: 100
+            }
+        ]
+    };
+
+    option && myChart.setOption(option);
+
+
+}
+
 </script>
 <template>
     <div class="demo-page">
-        <div class="demo">
+        <!-- <div class="demo">
             <div class="custom-test" id="demo02"></div>
         </div>
         <div class="demo">
@@ -814,6 +1346,22 @@ var init_demo04 = () => {
 
         <div class="demo">
             <div class="custom-test" id="demo04"></div>
+        </div> -->
+
+        <div class="demobig">
+            <div class="custom-test" id="demo05"></div>
+        </div>
+        <div class="demo">
+            <div class="custom-test" id="demo06"></div>
+        </div>
+        <div class="demo">
+            <div class="custom-test" id="demo08"></div>
+        </div>
+        <div class="demobig">
+            <div class="custom-test" id="demo07"></div>
+        </div>
+        <div class="demo">
+            <div class="custom-test" id="demo09"></div>
         </div>
     </div>
 </template>
@@ -840,5 +1388,13 @@ var init_demo04 = () => {
 .custom-test {
     width: 100%;
     height: 100%;
+}
+
+.demobig {
+    height: 1150px;
+    width: 1320px;
+    margin: 10px;
+    border-radius: 10px;
+    background-color: #f4f4f4;
 }
 </style>

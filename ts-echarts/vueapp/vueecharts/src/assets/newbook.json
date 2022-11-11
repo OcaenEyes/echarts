@@ -1,0 +1,322 @@
+[
+    {
+        "value": 1.2,
+        "name": "编辑1",
+        "path": "编辑1",
+        "children": [
+            {
+                "value": 1,
+                "name": "书籍1",
+                "path": "编辑1/书籍1",
+                "children": [
+                    {
+                        "value": 0.5,
+                        "name": "新书期"
+                    },
+                    {
+                        "value": 0.3,
+                        "name": "连载期"
+                    },
+                    {
+                        "value": 0.2,
+                        "name": "完结期"
+                    }
+                ]
+            },
+            {
+                "value": 1,
+                "name": "书籍2",
+                "path": "编辑1/书籍2",
+                "children": [
+                    {
+                        "value": 0.5,
+                        "name": "新书期"
+                    },
+                    {
+                        "value": 0.3,
+                        "name": "连载期"
+                    },
+                    {
+                        "value": 0.2,
+                        "name": "完结期"
+                    }
+                ]
+            },
+            {
+                "value": 1,
+                "name": "书籍3",
+                "path": "编辑1/书籍3",
+                "children": [
+                    {
+                        "value": 0.5,
+                        "name": "新书期"
+                    },
+                    {
+                        "value": 0.3,
+                        "name": "连载期"
+                    },
+                    {
+                        "value": 0.2,
+                        "name": "完结期"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": 1.2,
+        "name": "编辑2",
+        "path": "编辑2",
+        "children": [
+            {
+                "value": 1,
+                "name": "书籍1",
+                "path": "编辑1/书籍1",
+                "children": [
+                    {
+                        "value": 0.5,
+                        "name": "新书期"
+                    },
+                    {
+                        "value": 0.3,
+                        "name": "连载期"
+                    },
+                    {
+                        "value": 0.2,
+                        "name": "完结期"
+                    }
+                ]
+            },
+            {
+                "value": 1,
+                "name": "书籍2",
+                "path": "编辑1/书籍2",
+                "children": [
+                    {
+                        "value": 0.5,
+                        "name": "新书期"
+                    },
+                    {
+                        "value": 0.3,
+                        "name": "连载期"
+                    },
+                    {
+                        "value": 0.2,
+                        "name": "完结期"
+                    }
+                ]
+            },
+            {
+                "value": 1,
+                "name": "书籍3",
+                "path": "编辑1/书籍3",
+                "children": [
+                    {
+                        "value": 0.5,
+                        "name": "新书期"
+                    },
+                    {
+                        "value": 0.3,
+                        "name": "连载期"
+                    },
+                    {
+                        "value": 0.2,
+                        "name": "完结期"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": 1.2,
+        "name": "编辑3",
+        "path": "编辑3",
+        "children": [
+            {
+                "value": 1,
+                "name": "书籍1",
+                "path": "编辑1/书籍1",
+                "children": [
+                    {
+                        "value": 0.5,
+                        "name": "新书期"
+                    },
+                    {
+                        "value": 0.3,
+                        "name": "连载期"
+                    },
+                    {
+                        "value": 0.2,
+                        "name": "完结期"
+                    }
+                ]
+            },
+            {
+                "value": 1,
+                "name": "书籍2",
+                "path": "编辑1/书籍2",
+                "children": [
+                    {
+                        "value": 0.5,
+                        "name": "新书期"
+                    },
+                    {
+                        "value": 0.3,
+                        "name": "连载期"
+                    },
+                    {
+                        "value": 0.2,
+                        "name": "完结期"
+                    }
+                ]
+            },
+            {
+                "value": 1,
+                "name": "书籍3",
+                "path": "编辑1/书籍3",
+                "children": [
+                    {
+                        "value": 0.5,
+                        "name": "新书期"
+                    },
+                    {
+                        "value": 0.3,
+                        "name": "连载期"
+                    },
+                    {
+                        "value": 0.2,
+                        "name": "完结期"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": 1.2,
+        "name": "编辑4",
+        "path": "编辑4",
+        "children": [
+            {
+                "value": 1,
+                "name": "书籍1",
+                "path": "编辑1/书籍1",
+                "children": [
+                    {
+                        "value": 0.5,
+                        "name": "新书期"
+                    },
+                    {
+                        "value": 0.3,
+                        "name": "连载期"
+                    },
+                    {
+                        "value": 0.2,
+                        "name": "完结期"
+                    }
+                ]
+            },
+            {
+                "value": 1,
+                "name": "书籍2",
+                "path": "编辑1/书籍2",
+                "children": [
+                    {
+                        "value": 0.5,
+                        "name": "新书期"
+                    },
+                    {
+                        "value": 0.3,
+                        "name": "连载期"
+                    },
+                    {
+                        "value": 0.2,
+                        "name": "完结期"
+                    }
+                ]
+            },
+            {
+                "value": 1,
+                "name": "书籍3",
+                "path": "编辑1/书籍3",
+                "children": [
+                    {
+                        "value": 0.5,
+                        "name": "新书期"
+                    },
+                    {
+                        "value": 0.3,
+                        "name": "连载期"
+                    },
+                    {
+                        "value": 0.2,
+                        "name": "完结期"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": 1.2,
+        "name": "编辑5",
+        "path": "编辑5",
+        "children": [
+            {
+                "value": 1,
+                "name": "书籍1",
+                "path": "编辑1/书籍1",
+                "children": [
+                    {
+                        "value": 0.5,
+                        "name": "新书期"
+                    },
+                    {
+                        "value": 0.3,
+                        "name": "连载期"
+                    },
+                    {
+                        "value": 0.2,
+                        "name": "完结期"
+                    }
+                ]
+            },
+            {
+                "value": 1,
+                "name": "书籍2",
+                "path": "编辑1/书籍2",
+                "children": [
+                    {
+                        "value": 0.5,
+                        "name": "新书期"
+                    },
+                    {
+                        "value": 0.3,
+                        "name": "连载期"
+                    },
+                    {
+                        "value": 0.2,
+                        "name": "完结期"
+                    }
+                ]
+            },
+            {
+                "value": 1,
+                "name": "书籍3",
+                "path": "编辑1/书籍3",
+                "children": [
+                    {
+                        "value": 0.5,
+                        "name": "新书期"
+                    },
+                    {
+                        "value": 0.3,
+                        "name": "连载期"
+                    },
+                    {
+                        "value": 0.2,
+                        "name": "完结期"
+                    }
+                ]
+            }
+        ]
+    }
+]
